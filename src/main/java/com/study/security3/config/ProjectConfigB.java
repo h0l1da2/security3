@@ -88,13 +88,26 @@ public class ProjectConfigB extends WebSecurityConfigurerAdapter {
      * 접근 가능 역할 설정할 때는
      * ROLE_ 은 빼야됨(DB 에만 ROLE_ 이다)
      */
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.httpBasic()
+//                .and()
+//                .authorizeRequests()
+//                .anyRequest()
+//                // ADMIN 역할만 접근 가능
+//                .hasRole("ADMIN");
+//    }
+
+    /**
+     * denyAll()
+     * 모든 사용자 접근 불가
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
-                // ADMIN 역할만 접근 가능
-                .hasRole("ADMIN");
+                .denyAll(); // 모든 사용자 접근 불가
     }
 }
