@@ -13,7 +13,7 @@
 //import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //
 //@Configuration
-//public class ProjectConfigJ extends WebSecurityConfigurerAdapter {
+//public class ProjectConfigQ extends WebSecurityConfigurerAdapter {
 //
 //    /**
 //     * HTTP GET 으로 일단 요청해서
@@ -26,39 +26,13 @@
 //     * CSRF 토큰의 값을 세션에 저장함
 //     * 그래서 세션 id 도 있어야함
 //     */
-//
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-//
-//        UserDetails u1 =
-//                User.withUsername("휴일")
-//                .password("1234")
-//                .authorities("READ")
-//                .build();
-//
-//        userDetailsManager.createUser(u1);
-//
-//        return userDetailsManager;
-//
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
-//
-//    /**
-//     * 로그인 인증이 된 사용자만
-//     * 엔드 포인트에 접근할 수 있게 설정
-//     */
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .anyRequest().authenticated();
-//
-//        http.formLogin()
-//                .defaultSuccessUrl("/main", true);
+//        // /like 는 csrf 보안 미적용
+//        http.csrf(c -> {
+//            c.ignoringAntMatchers("/like");
+//        });
+//        http.authorizeRequests()
+//                .anyRequest().permitAll();
 //    }
 //}
